@@ -1,3 +1,5 @@
+import {currency} from "./script";
+
 let currencySymbol = '$';
 
 // Draws product list

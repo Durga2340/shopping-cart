@@ -47,10 +47,16 @@ products.push(strawberry);
 /* Declare an empty array named cart to hold the items in the cart */
 const cart=[];
 
-let totalPaid = 0;
+let remainingBalance = 0;
 
 function getProductById(productId) {
     return products.find(function(item) {
+        return item.productId === productId;
+    });
+}
+
+function getCartIndex(productId) {
+    return cart.findIndex(function(item) {
         return item.productId === productId;
     });
 }
@@ -103,11 +109,9 @@ function decreaseQuantity(productId){
 */
 function removeProductFromCart(productId){
 
-    let product=getProductById(productId)
+    let product = getProductById(productId)
 
-    let index=cart.findIndex(function(item){
-        return item.productId === productId;
-    });
+    let index = getCartIndex(productId);
 
     product.quantity =0;
 
@@ -146,16 +150,16 @@ function emptyCart() {
 */
 function pay(amount) {
 
-    totalPaid += amount;
+    remainingBalance += amount;
 
-    let remainingBalance = totalPaid - cartTotal();
+    remainingBalance -= cartTotal();
 
     if (remainingBalance >= 0) {
-        totalPaid = 0;
         emptyCart();
+        remainingBalance = 0;
     }
 
-    return remainingBalance;
+    return Number(remainingBalance.toFixed(2));
 }
 
 /* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
