@@ -1,4 +1,3 @@
-import {currency} from "./script";
 
 let currencySymbol = '$';
 
@@ -58,7 +57,7 @@ function drawCheckout() {
     checkout.append(div);
 }
 
-// Initialize
+// Initial Draw
 drawProducts();
 drawCart();
 drawCheckout();

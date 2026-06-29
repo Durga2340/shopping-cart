@@ -47,7 +47,7 @@ products.push(strawberry);
 /* Declare an empty array named cart to hold the items in the cart */
 const cart=[];
 
-let remainingBalance = 0;
+let totalPaid= 0;
 
 function getProductById(productId) {
     return products.find(function(item) {
@@ -150,16 +150,19 @@ function emptyCart() {
 */
 function pay(amount) {
 
-    remainingBalance += amount;
+    totalPaid += amount;
 
-    remainingBalance -= cartTotal();
+    let remainingBalance =
+        Number((totalPaid - cartTotal()).toFixed(2));
 
     if (remainingBalance >= 0) {
+        let change = remainingBalance;
         emptyCart();
-        remainingBalance = 0;
+        totalPaid = 0;
+        return change;
     }
 
-    return Number(remainingBalance.toFixed(2));
+    return remainingBalance;
 }
 
 /* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
